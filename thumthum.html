@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AAROHAN | College Fest 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* RESET */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #000;
+  color: #eee;
+  line-height:1.6;
+}
+
+a { color:#1e90ff; text-decoration:none; }
+a:hover,a:focus { text-decoration:underline; outline:none; }
+
+/* NAVBAR */
+nav {
+  position: fixed; width:100%; top:0; z-index:1000;
+  background:#111; backdrop-filter:saturate(180%) blur(10px);
+  display:flex; justify-content: space-between; align-items:center;
+  padding:10px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.6);
+}
+.logo span {
+  font-family: 'Poppins', sans-serif;
+  font-size:1.4rem; font-weight:700; color:#1e90ff;
+}
+.nav-links { display:flex; gap:25px; }
+.nav-links a {
+  font-weight:500; font-size:1rem; padding:8px 6px; border-radius:6px;
+  color:#eee;
+}
+.nav-links a:hover,a:focus { background:#1e90ff; color:#000; outline:none; }
+
+/* HAMBURGER */
+.hamburger { display:none; flex-direction:column; cursor:pointer; width:25px; height:20px; justify-content:space-between; }
+.hamburger span { background:#1e90ff; height:3px; border-radius:2px; transition: all 0.3s ease; }
+
+/* MOBILE NAV */
+@media(max-width:720px){
+  .nav-links { position:fixed; top:60px; right:-100%; background:#111; flex-direction:column;
+    width:180px; padding:20px; gap:15px; border-radius:8px 0 0 8px;
+    transition:right 0.3s ease; height:calc(100vh - 60px); box-shadow:0 2px 12px rgba(0,0,0,0.5); z-index:999;
+  }
+  .nav-links.open { right:0; }
+  .hamburger { display:flex; }
+}
+
+/* HERO */
+header.hero {
+  position: relative; overflow:hidden; height:100vh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 20px;
+  background:#000;
+}
+
+/* Floating lights for event vibe */
+.floating-shapes span {
+  position:absolute; display:block; width:12px; height:12px; background:rgba(30,144,255,0.6); border-radius:50%;
+  animation: float 10s linear infinite;
+  box-shadow:0 0 12px rgba(30,144,255,0.8);
+}
+.floating-shapes span:nth-child(1){ left:10%; animation-delay:0s; }
+.floating-shapes span:nth-child(2){ left:30%; animation-delay:2s; }
+.floating-shapes span:nth-child(3){ left:50%; animation-delay:4s; }
+.floating-shapes span:nth-child(4){ left:70%; animation-delay:6s; }
+.floating-shapes span:nth-child(5){ left:85%; animation-delay:8s; }
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.3); opacity:0.5; }
+  50% { transform: translateY(50vh) scale(0.6); opacity:1; }
+  100% { transform: translateY(-10vh) scale(0.3); opacity:0; }
+}
+
+/* Hero text glow & animation */
+header.hero h1, header.hero p, .btn {
+  opacity:0; transform:translateY(40px);
+  animation: fadeUp 1s forwards;
+  text-shadow: 0 0 8px #1e90ff, 0 0 12px #00bfff;
+}
+header.hero h1 { animation-delay:0.5s; font-size:3.5rem; font-family:'Poppins', sans-serif; color:#1e90ff; }
+header.hero p { animation-delay:1s; font-size:1.2rem; color:#eee; }
+.btn { animation-delay:1.5s; padding:14px 50px; border-radius:50px; background:#1e90ff; color:#000; font-weight:700; text-decoration:none;
+      box-shadow:0 0 20px #1e90ff; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.btn:hover,.btn:focus { transform:scale(1.1); box-shadow:0 0 35px #00bfff; outline:none; }
+
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+/* SECTIONS */
+main { margin-top:60px; }
+section {
+  max-width:1100px; margin:90px auto; padding:0 20px;
+  opacity:0; transform:translateY(30px); transition:opacity 1s ease, transform 1s ease;
+}
+section.visible { opacity:1; transform:translateY(0); }
+section.visible:nth-child(even) { transform:translateX(-30px); animation: slideLeft 1s forwards; }
+section.visible:nth-child(odd) { transform:translateX(30px); animation: slideRight 1s forwards; }
+@keyframes slideLeft { to { transform:translateX(0); opacity:1; } }
+@keyframes slideRight { to { transform:translateX(0); opacity:1; } }
+
+h2 { font-family:'Poppins', sans-serif; font-size:2.8rem; color:#1e90ff; margin-bottom:30px; text-align:center; }
+
+/* FEATURE BOX */
+.feature-box { background:#111; padding:50px 30px; border-radius:15px; box-shadow:0 0 25px #1e90ff; }
+.feature-box p { font-size:1.25rem; margin-bottom:40px; text-align:center; color:#eee; }
+.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:25px; }
+.feat {
+  background:#222; padding:25px; border-radius:15px; box-shadow:0 0 15px #1e90ff;
+  text-align:center; font-weight:600; font-size:1.15rem; cursor:default; transition:all 0.4s ease;
+}
+.feat:hover,.feat:focus { background:#333; transform:scale(1.1) rotate(-2deg); box-shadow:0 0 25px #00bfff; outline:none; }
+
+/* GALLERY */
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:35px; }
+.photo { border-radius:15px; overflow:hidden; box-shadow:0 0 20px #1e90ff; height:260px; transition:transform 0.3s ease; cursor:pointer; }
+.photo img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.6s ease, filter 0.6s ease; }
+.photo:hover,.photo:focus-within { transform:scale(1.05); }
+.photo:hover img,.photo:focus-within img { transform: scale(1.15) rotate(-1deg) brightness(1.2); }
+
+/* FOOTER */
+footer { text-align:center; padding:25px 15px; background:#111; color:#aaa; font-size:0.9rem; }
+
+/* ACCESSIBILITY */
+a:focus-visible, button:focus-visible, .photo:focus-visible{ outline:3px solid #1e90ff; outline-offset:3px; }
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  header.hero h1{ font-size:2.4rem; }
+  h2{ font-size:2rem; }
+  .feat{ font-size:1rem; padding:20px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav role="navigation" aria-label="Primary navigation">
+  <div class="logo"><span>AAROHAN</span></div>
+  <div class="hamburger" tabindex="0" aria-label="Toggle menu" aria-expanded="false" role="button">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links" id="nav-links">
+    <a href="#why" tabindex="0">Why Aarohan</a>
+    <a href="#gallery" tabindex="0">Gallery</a>
+  </div>
+</nav>
+
+<header class="hero" role="banner">
+  <div class="floating-shapes">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <h1>AAROHAN 2026</h1>
+  <p>Culture • Code • Chaos • Legacy</p>
+  <a href="#gallery" class="btn" tabindex="0">ENTER FEST</a>
+</header>
+
+<main>
+<section id="why" tabindex="0" aria-labelledby="why-title">
+  <h2 id="why-title">WHY AAROHAN?</h2>
+  <div class="feature-box">
+    <p>Not just a fest — an experience that explodes with energy.</p>
+    <div class="features">
+      <div class="feat" tabindex="0">🎶 Live Music</div>
+      <div class="feat" tabindex="0">💻 Hackathons</div>
+      <div class="feat" tabindex="0">🎭 Cultural Shows</div>
+      <div class="feat" tabindex="0">⚡ Night Events</div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" tabindex="0" aria-labelledby="gallery-title">
+  <h2 id="gallery-title">FEST IN MOTION</h2>
+  <div class="gallery">
+    <div class="photo" tabindex="0">
+      <img src="ima1.jpg" alt="Crowd enjoying music at Aarohan fest" />
+    </div>
+    <div class="photo" tabindex="0">
+      <img src="ima2.webp" alt="Stage lights and audience at Aarohan" />
+    </div>
+    <div class="photo" tabindex="0">
+      <img src="img3.jpeg" alt="Cultural performance at Aarohan fest" />
+    </div>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  © 2026 AAROHAN | College Fest
+</footer>
+
+<script>
+// Mobile nav toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => {
+  const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+  hamburger.setAttribute('aria-expanded', !expanded);
+  navLinks.classList.toggle('open');
+});
+hamburger.addEventListener('keydown', (e) => {
+  if(e.key==='Enter'||e.key===' '){ e.preventDefault(); hamburger.click(); }
+});
+
+// Scroll reveal
+const sections = document.querySelectorAll('section');
+const revealOnScroll = () => {
+  const trigger = window.innerHeight*0.85;
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top<trigger){ sec.classList.add('visible'); }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+
+</body>
+</html>
